@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container my-5">
+  <div class="product-detail d-flex flex-wrap align-items-start justify-content-center gap-4">
+
+    
+    <div class="product-image">
+      <img src="{{ product.image.url }}" alt="{{ product.name }}">
+    </div>
+
+    <div class="product-info">
+      <h2 class="fw-bold mb-2">{{ product.name }}</h2>
+      <h4 class="text-success mb-3">₹{{ product.price }}</h4>
+
+      <p class="mb-4">{{ product.description }}</p>
+
+      <div class="btn-container d-flex flex-wrap gap-2">
+        <a href="{% url 'order_register' product.id %}" class="custom-btn">Purchase</a>
+        <a href="{% url 'add_to_wishlist' product.id %}" class="custom-btn ">Add</a>
+      </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+{% endblock %}

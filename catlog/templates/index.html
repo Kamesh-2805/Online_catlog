@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<style>
+  
+  .home-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 85vh;
+    text-align: center;
+    padding: 20px;
+    transition: all 0.3s ease;
+  }
+
+  .home-section h1 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--text-color, #212529);
+    margin-bottom: 15px;
+    transition: color 0.3s ease;
+  }
+
+  .home-section p {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: var(--subtext-color, #555);
+    margin-bottom: 30px;
+    transition: color 0.3s ease;
+    max-width: 600px;
+  }
+
+  .home-section .btn {
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 12px 28px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+  }
+
+  .home-section .btn:hover {
+    transform: translateY(-3px);
+  }
+
+ 
+  [data-theme="light"] .home-section h1 {
+    color: #212529;
+  }
+
+  [data-theme="light"] .home-section p {
+    color: #555;
+  }
+
+  [data-theme="light"] .home-section .btn {
+    background-color: #198754;
+    color: #fff;
+  }
+
+  [data-theme="light"] .home-section .btn:hover {
+    background-color: #157347;
+  }
+
+  
+  [data-theme="dark"] .home-section h1 {
+    color: #f8f9fa;
+  }
+
+  [data-theme="dark"] .home-section p {
+    color: #d1d1d1;
+  }
+
+  [data-theme="dark"] .home-section .btn {
+    background-color: #0d6efd;
+    color: #fff;
+  }
+
+  [data-theme="dark"] .home-section .btn:hover {
+    background-color: #0b5ed7;
+  }
+</style>
+
+<div class="home-section">
+  <h1 id="welcomeText">Welcome To My Online Product Catalog</h1>
+  <p id="subText">Explore a wide range of products at the best prices — curated just for you.</p>
+  <a id="themeButton" href="{% url 'product' %}" class="btn btn-success">View Products</a>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const html = document.documentElement;
+    const welcomeText = document.getElementById("welcomeText");
+    const subText = document.getElementById("subText");
+    const themeButton = document.getElementById("themeButton");
+
+    function updateHomeText() {
+      const theme = html.getAttribute("data-theme");
+      if (theme === "dark") {
+        welcomeText.textContent = "Welcome to the Dark Side of Shopping ";
+        subText.textContent = "Find exclusive deals that shine even in the dark!";
+        themeButton.textContent = "Explore Dark Deals";
+      } else {
+        welcomeText.textContent = "Welcome to the Bright Side of Shopping ";
+        subText.textContent = "Discover amazing products that bring light, style, and value to your day!";
+        themeButton.textContent = "Explore Bright Deals";
+      }
+    }
+
+   
+    updateHomeText();
+
+    
+    const observer = new MutationObserver(updateHomeText);
+    observer.observe(html, { attributes: true, attributeFilter: ["data-theme"] });
+  });
+</script>
+
+
+{% endblock %}
