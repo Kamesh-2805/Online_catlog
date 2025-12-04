@@ -5,6 +5,7 @@ from .models import Product, Category,Order
 
 
 
+
 def order_register(request, product_id):
     product = get_object_or_404(Product, id=product_id)
 
