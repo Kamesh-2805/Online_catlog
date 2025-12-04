@@ -4,6 +4,7 @@ from .models import Product
 from .models import Product, Category,Order
 
 
+
 def order_register(request, product_id):
     product = get_object_or_404(Product, id=product_id)
 
@@ -76,4 +77,5 @@ def wishlist(request):
     wishlist_ids = request.session.get('wishlist', [])
     wishlist_products = Product.objects.filter(id__in=wishlist_ids)
     return render(request, 'wishlist.html', {'wishlist_products': wishlist_products})
+
 

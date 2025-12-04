@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Category(models.Model):
     name = models.CharField(max_length=100)
 
@@ -29,3 +30,6 @@ class Order(models.Model):
 
     def __str__(self):
         return f"Order for {self.product.name} by {self.name}"
+
+
+
